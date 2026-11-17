@@ -1,0 +1,21 @@
+name: Criar tag Git
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  criar-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Criar tag v6.0.0
+        run: |
+          git tag v6.0.0
+          git push origin v6.0.0
