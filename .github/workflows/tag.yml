@@ -1,4 +1,5 @@
-name: Criar tag Git
+
+name: Atualizar tag Git
 
 on:
   workflow_dispatch:
@@ -7,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  criar-tag:
+  atualizar-tag:
     runs-on: ubuntu-latest
     steps:
       - name: Baixar repositório
@@ -15,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Criar tag v6.0.0
+      - name: Atualizar tag v6.0.0
         run: |
-          git tag v6.0.0
-          git push origin v6.0.0
+          git tag -f v6.0.0
+          git push --force origin v6.0.0
