@@ -3,6 +3,12 @@ name: Atualizar tag Git
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag que será atualizada"
+        required: true
+        default: "v6.0.1"
+        type: string
 
 permissions:
   contents: write
@@ -10,13 +16,28 @@ permissions:
 jobs:
   atualizar-tag:
     runs-on: ubuntu-latest
+
     steps:
       - name: Baixar repositório
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
-      - name: Atualizar tag v6.0.0
+      - name: Validar tag
+        env:
+          TAG: ${{ inputs.tag }}
         run: |
-          git tag -f v6.0.0
-          git push --force origin v6.0.0
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+            echo "::error::Tag inválida. Use vX.Y.Z."
+            exit 1
+          }
+
+      - name: Atualizar tag
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          git fetch origin main
+          git tag -f "$TAG" origin/main
+          git push --force origin "refs/tags/$TAG"
+          echo "Tag $TAG atualizada para o commit atual da main."
