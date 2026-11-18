@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "latestVersionCode": 60001,
+  "latestVersionName": "6.0.1",
+  "minVersionCode": 60000,
+  "mandatory": false,
+  "apkUrl": "https://github.com/Gaspazinh/Conversor/releases/download/v6.0.1/BetMC-6.0.1.apk",
+  "apkSize": 9949519,
+  "sha256": "db0c6dac30d60297d75216fc06c3a6e7802f4aaee854c3cd19a43890e912095d",
+  "notes": [
+    "O resultado de “Verificar atualizações” agora aparece logo abaixo do botão.",
+    "Ajustes internos para o teste de atualização automática."
+  ],
+  "publishedAt": "2026-11-18"
+}
